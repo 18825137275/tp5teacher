@@ -23,7 +23,7 @@
         <td>{$student->getKlass->getTeacher->name}</td>
         <td>{$student->getData('email')}</td>
         <td>{$student->create_time}</td>
-        <td><a class="btn btn-danger btn-sm" href="{:url('delete?id=' . $student->getData('id'))}"><i class="glyphicon glyphicon-trash"></i>&nbsp;删除</a>&nbsp;<a class="btn btn-sm btn-primary" href="{:url('edit?id=' . $student->getData('id'))}"><i class="glyphicon glyphicon-pencil"></i>&nbsp;编辑</a></td>
+        <td><a class="btn btn-danger btn-sm" href="{:url('Student/delete?id=' . $student->getData('id'))}"><i class="glyphicon glyphicon-trash"></i>&nbsp;删除</a>&nbsp;<a class="btn btn-sm btn-primary" href="{:url('Student/edit?id=' . $student->getData('id'))}"><i class="glyphicon glyphicon-pencil"></i>&nbsp;编辑</a></td>
     </tr>
     {/volist}
 </table>

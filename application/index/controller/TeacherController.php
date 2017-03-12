@@ -90,7 +90,7 @@ class TeacherController extends IndexController
             return $teacher->getError();
         }
 
-        return $this->success('添加成功！', url('index'));
+        return $this->success('添加成功！', url('Teacher/index'));
     }
 
     /**
@@ -133,7 +133,7 @@ class TeacherController extends IndexController
             return $this->error("更新失败：" . $teacher->getError());
         }
 
-        return $this->success('更新成功！', url('index'));
+        return $this->success('更新成功！', url('Teacher/index'));
     }
 
     /**
@@ -174,6 +174,6 @@ class TeacherController extends IndexController
         }
 
         //删除成功，跳转
-        return $this->success("删除成功！", url('index'));
+        return $this->success("删除成功！", url('Teacher/index'));
     }
 }

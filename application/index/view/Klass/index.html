@@ -13,7 +13,7 @@
         <td>{$key}</td>
         <td>{$klass->getData('name')}</td>
         <td>{$klass->getTeacher->name}</td>
-        <td><a class="btn btn-danger btn-sm" href="{:url('delete?id=' . $klass->getData('id'))}"><i class="glyphicon glyphicon-trash"></i>&nbsp;删除</a>&nbsp;<a class="btn btn-sm btn-primary" href="{:url('edit?id=' . $klass->getData('id'))}"><i class="glyphicon glyphicon-pencil"></i>&nbsp;编辑</a></td>
+        <td><a class="btn btn-danger btn-sm" href="{:url('Klass/delete?id=' . $klass->getData('id'))}"><i class="glyphicon glyphicon-trash"></i>&nbsp;删除</a>&nbsp;<a class="btn btn-sm btn-primary" href="{:url('Klass/edit?id=' . $klass->getData('id'))}"><i class="glyphicon glyphicon-pencil"></i>&nbsp;编辑</a></td>
     </tr>
     {/volist}
 </table>

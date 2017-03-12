@@ -1,7 +1,7 @@
 {extend name='edit'}
 {block name="title"}编辑学生{/block}
 {block name="content"}
-{php}$action = request()->action() === 'add' ? 'save' : 'update';{/php}
+{php}$action = request()->action() === 'add' ? 'Student/save' : 'Student/update';{/php}
 <form action="{:url($action)}" method="post">
     <label>姓名:</label>
     <input type="hidden" name="id" value="{$student->getData('id')}" />

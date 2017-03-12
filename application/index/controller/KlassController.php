@@ -83,7 +83,7 @@ class KlassController extends IndexController
             return $this->error("添加失败：" . $klass->getError());
         }
 
-        return $this->success("添加成功!", url('index'));
+        return $this->success("添加成功!", url('Klass/index'));
     }
 
     /**
@@ -119,7 +119,7 @@ class KlassController extends IndexController
             return $this->error('更新失败：' . $klass->getError());
         }
 
-        return $this->success('更新成功！', url('index'));
+        return $this->success('更新成功！', url('Klass/index'));
     }
 
     /**
@@ -167,6 +167,6 @@ class KlassController extends IndexController
         }
 
         //删除成功，跳转
-        return $this->success("删除成功！", url('index'));
+        return $this->success("删除成功！", url('Klass/index'));
     }
 }

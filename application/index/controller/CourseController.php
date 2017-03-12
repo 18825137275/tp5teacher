@@ -78,7 +78,7 @@ class CourseController extends IndexController
             return $this->error('新增失败：' . $course->getKlass()->getError());
         }
 
-        return $this->success('新增成功！', url('index'));
+        return $this->success('新增成功！', url('Course/index'));
     }
 
     /**
@@ -146,7 +146,7 @@ class CourseController extends IndexController
             return $this->error('添加失败：' . $course->getKlass()->getError());
         }
 
-        return $this->success('更新成功！', url('index'));
+        return $this->success('更新成功！', url('Course/index'));
     }
 
     /**
@@ -178,6 +178,6 @@ class CourseController extends IndexController
         }
 
         //删除成功，跳转
-        return $this->success("删除成功！", url('index'));
+        return $this->success("删除成功！", url('Course/index'));
     }
 }
