@@ -1,19 +1,16 @@
-<!DOCTYPE html>
-<html lang="zh-cn">
-<head>
-    <meta charset="UTF-8">
-    <title>添加课程</title>
-</head>
-<body>
-    <form action="{:url('update')}" method="post">
-        <input type="hidden" name="id" id="id" value="{$course.id}" />
-        <label for="name">name:</label>
-        <input type="text" name="name" id="name" value="{$course.name}" />
-        {volist name="$course->getKlass()->select()" id="klass"}
-            <input type="checkbox" name="klass_id[]" id="klass_id_{$klass.id}" value="{$klass.id}" {eq name="$course->getIsChecked($klass)" value="true"}checked="checked"{/eq} />
-            <label for="klass_id_1">{$klass->name}</label>
-        {/volist}
-        <button type="submit">submit</button>
-    </form>
-</body>
-</html>
+{extend name='edit'}
+{block name="title"}编辑课程{/block}
+{block name="content"}
+{php}$action = request()->action() === 'add' ? 'save' : 'update';{/php}
+{php}$action = request()->action() === 'add' ? 'save' : 'update';{/php}
+<form action="{:url($action)}" method="post">
+    <input type="hidden" name="id" id="id" value="{$course.id}" />
+    <label for="name">name:</label>
+    <input type="text" name="name" id="name" value="{$course.name}" />
+    {volist name="$course->getKlass()->select()" id="klass"}
+        <input type="checkbox" name="klass_id[]" id="klass_id_{$klass.id}" value="{$klass.id}" {eq name="$course->getIsChecked($klass)" value="true"}checked="checked"{/eq} />
+        <label for="klass_id_1">{$klass->name}</label>
+    {/volist}
+    <button type="submit">submit</button>
+</form>
+{/block}

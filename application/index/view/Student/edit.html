@@ -1,35 +1,24 @@
-<!DOCTYPE html>
-<html lang="zh-cn">
-
-<head>
-    <meta charset="UTF-8">
-    <title>编辑</title>
-</head>
-
-<body class="contanier">
-    <div class="row">
-        <div class="col-md-12">
-            <form action="{:url('update')}" method="post">
-                <label>姓名:</label>
-                <input type="hidden" name="id" value="{$student->getData('id')}" />
-                <input type="text" name="name" value="{$student->getData('name')}" />
-                <label>学号:</label>
-                <input type="text" name="num" value="{$student->getData('num')}" />
-                <label>性别:</label>
-                <input type="radio" name="sex" value="0" id="sex0" {eq name="$student->getData('sex')" value="0"}checked="checked"{/eq}/><label for="sex0">男</label>
-                <input type="radio" name="sex" value="1" id="sex1" {eq name="$student->getData('sex')" value="1"}checked="checked"{/eq}/><label for="sex1">女</label>
-                <label>班级</label>
-                <select name="klass_id">
-                {volist name="$student->getKlass->all()" id="klass"}
-                    <option value="{$klass->id}" {eq name="klass->id" value="$student->klass_id"}selected="selected"{/eq}>{$klass->name}</option>
-                {/volist}
-                </select>
-                <label>邮箱:</label>
-                <input type="email" name="email" value="{$student->getData('email')}" />
-                <button type="submit">保存</button>
-            </form>
-        </div>
-    </div>
-</body>
-
-</html>
+{extend name='edit'}
+{block name="title"}编辑学生{/block}
+{block name="content"}
+{php}$action = request()->action() === 'add' ? 'save' : 'update';{/php}
+<form action="{:url($action)}" method="post">
+    <label>姓名:</label>
+    <input type="hidden" name="id" value="{$student->getData('id')}" />
+    <input type="text" name="name" value="{$student->getData('name')}" />
+    <label>学号:</label>
+    <input type="text" name="num" value="{$student->getData('num')}" />
+    <label>性别:</label>
+    <input type="radio" name="sex" value="0" id="sex0" {eq name="$student->getData('sex')" value="0"}checked="checked"{/eq}/><label for="sex0">男</label>
+    <input type="radio" name="sex" value="1" id="sex1" {eq name="$student->getData('sex')" value="1"}checked="checked"{/eq}/><label for="sex1">女</label>
+    <label>班级</label>
+    <select name="klass_id">
+    {volist name="$student->getKlass()->select()" id="klass"}
+        <option value="{$klass->id}" {eq name="klass->id" value="$student->klass_id"}selected="selected"{/eq}>{$klass->name}</option>
+    {/volist}
+    </select>
+    <label>邮箱:</label>
+    <input type="email" name="email" value="{$student->getData('email')}" />
+    <button type="submit">保存</button>
+</form>
+{/block}

@@ -38,6 +38,19 @@ class KlassController extends IndexController
     }
 
     /**
+     * 对数据进行更新或保存
+     * @说明：这里把function设置为private私有属性，一是为了更加安全，因为声明为private后，就不能通过URL来进行访问了；二是为了区别触发器与一般的函数，我们触发器是可以被URL来触发，而一般的函数只所以不叫做触发器，是由于通过URL触发不到。我们声明为private就达到了这个触发不到的目的。
+     * @param  Teacher &$Teacher 注意：我们在这的参数为(&$Teacher)，这使得：如果执行$Teacher->validate(true)->save()时发生错误，错误信息能够能过Teacher变量进行回传，这和C语言中的&a(将变量a的地址传入)是相同的道理。
+     */
+    private function saveKlass(Klass &$klass)
+    {
+        $klass->name       = input('post.name');
+        $klass->teacher_id = input('post.teacher_id');
+
+        return $klass->validate(true)->save($klass->getData());
+    }
+
+    /**
      * 新增数据交互页
      */
     public function add()
@@ -45,11 +58,15 @@ class KlassController extends IndexController
         //获取所有教师信息
         $klass = new Klass;
 
+        $klass->id         = 0;
+        $klass->name       = '';
+        $klass->teacher_id = 0;
+
         //模板赋值
         $this->assign('klass', $klass);
 
         //渲染模板输出
-        return $this->fetch();
+        return $this->fetch('edit');
     }
 
     /**
@@ -58,17 +75,11 @@ class KlassController extends IndexController
      */
     public function save()
     {
-    	// 接收传入数据
-        $postData = Request::instance()->post();
-
         // 实例化对象，并赋值
-        $klass             = new Klass();
-        $klass->name       = $postData['name'];
-        $klass->teacher_id = $postData['teacher_id'];
+        $klass = new Klass();
 
         // 新增对象到数据表,并判断是否添加成功！
-        $result = $klass->validate()->save($klass->getData());
-        if (false === $result) {
+        if (false === $this->saveKlass($klass)) {
             return $this->error("添加失败：" . $klass->getError());
         }
 
@@ -82,10 +93,6 @@ class KlassController extends IndexController
     public function edit()
     {
         $id = Request::instance()->param('id/d');
-
-        //获取所有教师信息
-        // $teachers = Teacher::all();
-        // $this->assign('teachers', $teachers);
 
         //获取编辑数据,并判断是否存在（防止传入id不合法）
         if ($id == 0 || is_null($klass = Klass::get($id))) {
@@ -102,18 +109,13 @@ class KlassController extends IndexController
      */
     public function update()
     {
-        $postData = Request::instance()->post();
+        $id = Request::instance()->post('id/d');
 
-        $klass = Klass::get($postData['id']);
-
-        if (is_null($klass)) {
+        if ($id == 0 || is_null($klass = Klass::get($id))) {
             return $this->error('数据不存在！');
         }
 
-        $klass->name       = $postData['name'];
-        $klass->teacher_id = $postData['teacher_id'];
-
-        if (!$klass->validate(true)->save($klass->getData())) {
+        if (false === $this->saveKlass($klass)) {
             return $this->error('更新失败：' . $klass->getError());
         }
 

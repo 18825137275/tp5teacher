@@ -1,20 +1,16 @@
-<!DOCTYPE html>
-<html lang="zh-cn">
-<head>
-    <meta charset="UTF-8">
-    <title>编辑</title>
-</head>
-<body>
-    <form action="{:url('update')}" method="post">
-        <input type="hidden" name="id" id="id" value="{$klass->getData('id')}" />
-        <label for="name">name:</label><input type="text" name="name" id="name" value="{$klass->getData('name')}" />
-        <label for="teacher">teacher:</label>
-        <select name="teacher_id" id="teacher">
-        	{volist name="$klass->getTeacher->all()" id="teacher"}
-        		<option value="{$teacher->getData('id')}" {eq name="$teacher->getData('id')" value="$klass->getData('teacher_id')"}selected="selected"{/eq}>{$teacher->getData('name')}</option>
-        	{/volist}
-        </select>
-        <button type="submit">提交</button>
-    </form>
-</body>
-</html>
+{extend name='edit' /}
+{block name='title'}编辑班级{/block}
+{block name='content'}
+{php}$action = request()->action() === 'add' ? 'save' : 'update'{/php}
+<form action="{:url($action)}" method="post">
+    <input type="hidden" name="id" id="id" value="{$klass->getData('id')}" />
+    <label for="name">name:</label><input type="text" name="name" id="name" value="{$klass->getData('name')}" />
+    <label for="teacher">teacher:</label>
+    <select name="teacher_id" id="teacher">
+        {volist name="$klass->getTeacher()->select()" id="teacher"}
+            <option value="{$teacher->getData('id')}" {eq name="$teacher->getData('id')" value="$klass->getData('teacher_id')"}selected="selected"{/eq}>{$teacher->getData('name')}</option>
+        {/volist}
+    </select>
+    <button type="submit">提交</button>
+</form>
+{/block}
