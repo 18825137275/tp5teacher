@@ -31,31 +31,31 @@ return [
     'teacher'            => ['Teacher/index', ['method' => 'get']],
     'teacher/add'        => ['Teacher/add', ['method' => 'get']],
     'teacher/save'       => ['Teacher/save', ['method' => 'post']],
-    'teacher/edit/:id'   => ['Teacher/edit', ['method' => 'get'], ['id' => '\d+']],
+    // 'teacher/edit/:id'   => ['Teacher/edit', ['method' => 'get'], ['id' => '\d+']],
     'teacher/update'     => ['Teacher/update', ['method' => 'post']],
-    'teacher/delete/:id' => ['Teacher/delete', ['method' => 'get'], ['id' => '\d+']],
+    // 'teacher/delete/:id' => ['Teacher/delete', ['method' => 'get'], ['id' => '\d+']],
 
     //Klass控制器
     'klass'              => ['Klass/index', ['method' => 'get']],
     'klass/add'          => ['Klass/add', ['method' => 'get']],
     'klass/save'         => ['Klass/save', ['method' => 'post']],
-    'klass/edit/:id'     => ['Klass/edit', ['method' => 'get'], ['id' => '\d+']],
+    // 'klass/edit/:id'     => ['Klass/edit', ['method' => 'get'], ['id' => '\d+']],
     'klass/update'       => ['Klass/update', ['method' => 'post']],
-    'klass/delete/:id'   => ['Klass/delete', ['method' => 'get'], ['id' => '\d+']],
+    // 'klass/delete/:id'   => ['Klass/delete', ['method' => 'get'], ['id' => '\d+']],
 
     //Student控制器
     'student'            => ['Student/index', ['method' => 'get']],
     'student/add'        => ['Student/add', ['method' => 'get']],
     'student/save'       => ['Student/save', ['method' => 'post']],
-    'student/edit/:id'   => ['Student/edit', ['method' => 'get'], ['id' => '\d+']],
+    // 'student/edit/:id'   => ['Student/edit', ['method' => 'get'], ['id' => '\d+']],
     'student/update'     => ['Student/update', ['method' => 'post']],
-    'student/delete/:id' => ['Student/delete', ['method' => 'get'], ['id' => '\d+']],
+    // 'student/delete/:id' => ['Student/delete', ['method' => 'get'], ['id' => '\d+']],
 
     //Course控制器
     'course'             => ['Course/index', ['method' => 'get']],
     'course/add'         => ['Course/add', ['method' => 'get']],
     'course/save'        => ['Course/save', ['method' => 'post']],
-    'course/edit/:id'    => ['Course/edit', ['method' => 'get'], ['id' => '\d+']],
+    // 'course/edit/:id'    => ['Course/edit', ['method' => 'get'], ['id' => '\d+']],
     'course/update'      => ['Course/update', ['method' => 'post']],
-    'course/delete/:id'  => ['Course/delete', ['method' => 'get'], ['id' => '\d+']],
+    // 'course/delete/:id'  => ['Course/delete', ['method' => 'get'], ['id' => '\d+']],
 ];
